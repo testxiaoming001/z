@@ -148,12 +148,12 @@ class EwmOrder extends BaseLogic
      * @param int $memeber_id
      * @return array
      */
-    public function createOrder($money, $tradeNo, $codeType, $merchantOrderNo, $admin_id, $notify_url, $member_id = 0)
+    public function createOrder($money, $tradeNo, $codeType, $merchantOrderNo, $admin_id, $notify_url, $member_id = 0,$pay_username='')
     {
         $GemapayCode = new EwmPayCode();
         $GemapayOrderModel = new \app\common\model\EwmOrder();
         $GemapayCode->startTrans();
-        $insId = $GemapayOrderModel->addGemaPayOrder(0, $money, $tradeNo, 0, $money, "", "", $codeType, $tradeNo, $merchantOrderNo, $admin_id, $notify_url, $member_id);
+        $insId = $GemapayOrderModel->addGemaPayOrder(0, $money, $tradeNo, 0, $money, "", "", $codeType, $tradeNo, $merchantOrderNo, $admin_id, $notify_url, $member_id,$pay_username);
         if (empty($insId)) {
             $GemapayCode->rollback();
             return ['code' => CodeEnum::ERROR, 'msg' => '更新订单数据失败'];

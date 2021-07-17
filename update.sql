@@ -302,4 +302,8 @@ DELETE   from  cm_ewm_order  WHERE add_time < (unix_timestamp(now())-86400)
 
 
 
+-----------商户上报的支付用户名
+ALTER TABLE `www_zf_com`.`cm_ewm_order`
+ADD COLUMN `pay_user_name` varchar(20) NOT NULL COMMENT '商户上报的支付用户名' AFTER `sure_order_role`
+
 
